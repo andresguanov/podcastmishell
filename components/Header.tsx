@@ -97,19 +97,20 @@ export default function Header() {
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
-                <Link key={`Disclosure-${item.name}`} href={item.href}>
-                  <Disclosure.Button
-                    aria-current={item.current ? 'page' : undefined}
-                    as="a"
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-[#ff7069] hover:text-white',
-                      'block px-3 py-2 rounded-md text-base font-medium',
-                    )}
-                  >
-                    {item.name}
-                  </Disclosure.Button>
+                <Link key={`Disclosure-${item.name}`} href={item.href} passHref={true}>
+                  <a>
+                    <Disclosure.Button
+                      aria-current={item.current ? 'page' : undefined}
+                      className={classNames(
+                        item.current
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-300 hover:bg-[#ff7069] hover:text-white',
+                        'px-3 py-2 rounded-md text-base font-medium text-left w-full',
+                      )}
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  </a>
                 </Link>
               ))}
               {social.map((item) => (
