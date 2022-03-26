@@ -10,11 +10,11 @@ const navigation = [
 
 const social = [
   {
-    name: 'facebook',
+    name: 'Facebook',
     href: 'https://www.facebook.com/mishell.revelo.507',
     icon: '/icons/facebook.svg',
   },
-  { name: 'instagram', href: 'https://www.instagram.com/5ta.pata_/', icon: '/icons/instagram.svg' },
+  { name: 'Instagram', href: 'https://www.instagram.com/5ta.pata_/', icon: '/icons/instagram.svg' },
 ]
 
 function classNames(...classes: string[]) {
@@ -27,7 +27,7 @@ export default function Header() {
       {({ open }) => (
         <>
           <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16">
+            <div className="relative flex items-center justify-between h-20">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-[#ff7069] hover:text-white hover:bg-[#ff7069] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -45,9 +45,9 @@ export default function Header() {
                     <Image
                       alt="Workflow"
                       className="w-auto h-8"
-                      height={40}
+                      height={56}
                       src="/logo.jpeg"
-                      width={40}
+                      width={56}
                     />
                     <p className="hidden sm:block tracking-wider p-4 text-[#ff7069] font-bold text-lg w-auto">
                       La Quinta Pata
@@ -59,7 +59,7 @@ export default function Header() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <Link key={item.name} href={item.href}>
+                      <Link key={`Nav-${item.name}`} href={item.href}>
                         <a
                           aria-current={item.current ? 'page' : undefined}
                           className={classNames(
@@ -75,7 +75,7 @@ export default function Header() {
                     ))}
                     {social.map((item) => (
                       <a
-                        key={item.name}
+                        key={`Nav-${item.name}`}
                         // className="px-2 rounded-md hover:bg-gray-700"
                         href={item.href}
                       >
@@ -97,18 +97,35 @@ export default function Header() {
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
+                <Link key={`Disclosure-${item.name}`} href={item.href}>
+                  <Disclosure.Button
+                    aria-current={item.current ? 'page' : undefined}
+                    as="a"
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-[#ff7069] hover:text-white',
+                      'block px-3 py-2 rounded-md text-base font-medium',
+                    )}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                </Link>
+              ))}
+              {social.map((item) => (
                 <Disclosure.Button
-                  key={item.name}
-                  aria-current={item.current ? 'page' : undefined}
+                  key={`Disclosure-${item.name}`}
                   as="a"
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-[#ff7069] hover:text-white',
-                    'block px-3 py-2 rounded-md text-base font-medium',
-                  )}
+                  className="text-gray-300 hover:bg-[#ff7069] hover:text-white px-3 py-2 rounded-md text-base font-medium flex items-center"
                   href={item.href}
                 >
+                  <img
+                    alt={`${item.name}-icon`}
+                    className="transition-transform delay-75 hover:scale-110 mx-2"
+                    height={32}
+                    src={item.icon}
+                    width={32}
+                  />
                   {item.name}
                 </Disclosure.Button>
               ))}
