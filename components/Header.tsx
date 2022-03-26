@@ -11,7 +11,7 @@ const navigation = [
 const social = [
   {
     name: 'Facebook',
-    href: 'https://www.facebook.com/mishell.revelo.507',
+    href: 'https://www.facebook.com/100100989253785/posts/100815655848985/?sfnsn=scwspmo',
     icon: '/icons/facebook.svg',
   },
   { name: 'Instagram', href: 'https://www.instagram.com/5ta.pata_/', icon: '/icons/instagram.svg' },
